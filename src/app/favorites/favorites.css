@@ -1,0 +1,27 @@
+.card-text{
+  overflow: hidden;
+  text-overflow: ellipsis;
+  height: 100px;;
+}
+
+.card-title{
+  height: 50px;
+  font-size: 1.1rem;
+}
+
+.card{
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+
+.btn-primary {
+  background-color: #ca440a;
+  border:none; /* keep border consistent */
+}
+
+.btn-primary:hover,
+.btn-primary:focus,
+.btn-primary:active {
+  background-color: #b03908; /* slightly darker for hover/active */
+  border:none;
+}

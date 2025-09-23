@@ -1,0 +1,30 @@
+<div class="container-fluid">
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a routerLink="/">Books</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Favorites</li>
+        </ol>
+    </nav>
+    @if (books.length == 0)
+    {<div class="row">
+        <div class="col-lg-12">
+            <div class="alert alert-warning">
+                Favorites list is empty, add a new Book to the list !
+            </div>
+        </div>
+    </div>}
+
+    <div class="row">
+        <div class="col-lg-2" >
+            @for ( book of books; track book.id)
+            {<div class="card">
+                <img class="card-img-top" src="{{book.cover}}" alt="Card image cap">
+                <div class="card-body">
+                    <h5 class="card-title">{{book.title}}</h5>
+                    <p class="card-text">{{book.description}}</p>
+                    <a [routerLink]="['/books', book.id]" class="btn btn-primary"><i class="fa fa-eye"></i> View</a>
+                </div>
+            </div>}
+        </div>
+    </div>
+</div>
