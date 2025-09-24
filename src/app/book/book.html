@@ -1,0 +1,38 @@
+<div class="container-fluid">
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a routerLink="/">Books</a></li>
+            <li class="breadcrumb-item active" aria-current="page">{{book.title}}</li>
+        </ol>
+    </nav>
+    <div class="row actions">
+        <div class="col-lg-4 ">
+            <button class="btn btn-warning" [routerLink]="['/favorites']">
+                <i class="fa fa-star"></i> View favorites
+            </button>
+            <button class="btn btn-info" (click)="addToFav()">
+                <i class="fa fa-heart"></i> Add to ReadList
+            </button>
+        </div>
+    </div>
+
+    <div class="row details">
+        <div class="col-lg-2 ">
+            <div>
+                <img class="img-fluid" src="{{book.cover}}" alt="">
+            </div>
+        </div>
+        <div class="col-lg-5">
+            <div>
+                <p class="title">{{book.title}} By <b> {{book.author}} </b> </p> 
+                <div>
+                    <span class="badge badge-danger">{{book.publishDate}}</span>
+                </div>
+            </div>
+            <div>
+                <p>{{book.description}}</p>
+            </div>
+        </div>
+    
+    </div>
+</div>

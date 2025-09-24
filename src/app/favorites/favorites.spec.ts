@@ -1,6 +1,8 @@
 import { waitForAsync, ComponentFixture, TestBed } from '@angular/core/testing';
-
+import { provideHttpClient, withFetch } from '@angular/common/http';
+import { provideHttpClientTesting } from '@angular/common/http/testing';
 import { FavoritesComponent } from './favorites';
+import { provideRouter } from '@angular/router';
 
 describe('FavoritesComponent', () => {
   let component: FavoritesComponent;
@@ -8,7 +10,12 @@ describe('FavoritesComponent', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      imports: [ FavoritesComponent ]
+      imports: [ FavoritesComponent ],
+      providers: [
+        provideHttpClient(withFetch()),
+        provideHttpClientTesting(),
+        provideRouter([])
+      ]
     })
       .compileComponents();
   }));
