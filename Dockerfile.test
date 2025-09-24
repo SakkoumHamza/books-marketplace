@@ -1,13 +1,12 @@
-FROM node:14.0.0
+FROM node:22-alpine
 
 ENV CHROME_BIN=chromium
 
 WORKDIR /app
 
-RUN apt-get update && apt-get install -y chromium
+RUN apk update && apk add --no-cache chromium
 
-COPY package-lock.json .
-COPY package.json .
+COPY package-lock.json package.json .
 
 RUN npm i && npm i -g @angular/cli
 
