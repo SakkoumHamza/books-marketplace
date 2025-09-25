@@ -2,6 +2,7 @@ import { waitForAsync, ComponentFixture, TestBed } from '@angular/core/testing';
 import { provideHttpClient, withFetch } from '@angular/common/http';
 import { provideHttpClientTesting } from '@angular/common/http/testing';
 import { DashboardComponent } from './dashboard';
+import { ApiService } from '../api.service';
 
 describe('DashboardComponent', () => {
   let component: DashboardComponent;
@@ -12,7 +13,8 @@ describe('DashboardComponent', () => {
       imports: [DashboardComponent],
       providers: [
         provideHttpClient(withFetch()),
-        provideHttpClientTesting()
+        provideHttpClientTesting(),
+        ApiService
       ]
     })
       .compileComponents();

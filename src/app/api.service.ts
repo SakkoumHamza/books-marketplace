@@ -1,16 +1,14 @@
-import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { environment } from '../environments/environement';
 import { IBook } from './book/book';
+import { inject } from '@angular/core';
 
-@Injectable({
-  providedIn: 'root'
-})
+
 export class ApiService {
 
   private BASE_URL = environment.apiURL;
 
-  constructor(private http: HttpClient) { }
+  public http: HttpClient = inject(HttpClient);
 
   public addToFavorites(book: IBook) {
     return this.http.post(`${this.BASE_URL}/favorites`, book);

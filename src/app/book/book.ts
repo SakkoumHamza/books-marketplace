@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 import { ApiService } from '../api.service';
 import { ActivatedRoute, RouterModule } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
@@ -23,6 +23,10 @@ export interface IBook {
   ]
 })
 export class BookComponent implements OnInit {
+  private apiService = inject(ApiService);
+  private activatedRoute = inject(ActivatedRoute);
+  private toastr = inject(ToastrService);
+
 
   public book: IBook = {
     id: '',
@@ -33,12 +37,6 @@ export class BookComponent implements OnInit {
     author: '',
     description: ''
   };
-
-  constructor(
-    private apiService: ApiService,
-    private activatedRoute: ActivatedRoute,
-    private toastr: ToastrService
-  ) {}
 
   ngOnInit() {
     const bookId = this.activatedRoute.snapshot.params['id'];

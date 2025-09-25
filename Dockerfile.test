@@ -6,7 +6,7 @@ WORKDIR /app
 
 RUN apk update && apk add --no-cache chromium
 
-COPY package-lock.json package.json .
+COPY package-lock.json package.json ./
 
 RUN npm i && npm i -g @angular/cli
 

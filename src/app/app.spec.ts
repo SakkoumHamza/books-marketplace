@@ -1,4 +1,4 @@
-import { TestBed ,waitForAsync} from '@angular/core/testing';
+import { TestBed} from '@angular/core/testing';
 import { AppComponent } from './app';
 import { provideRouter } from '@angular/router';
 import { provideHttpClient, withFetch } from '@angular/common/http';

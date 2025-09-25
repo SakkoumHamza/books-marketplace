@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { ApiService } from '../api.service';
 import { IBook } from '../book/book';
 import { RouterModule } from '@angular/router';
@@ -15,15 +15,15 @@ import { FormsModule } from '@angular/forms';
 })
 export class DashboardComponent implements OnInit {
   public books: IBook[] = [];
-  public keyword: string = '';
+  public keyword = '';
 
-  constructor(private apiService: ApiService) {
-  }
-
+  private apiService: ApiService = inject(ApiService);
+  
   private getBooks(){
     this.apiService.getBooks().subscribe(data => {
       this.books = data;
     }, err => {
+      console.error(err);
       this.books = [];
     });
   }
@@ -40,6 +40,7 @@ export class DashboardComponent implements OnInit {
       else
         this.books.push(data);
     }, err => {
+      console.error(err);
       this.books = [];
     })
   }

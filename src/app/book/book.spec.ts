@@ -4,11 +4,14 @@ import { provideHttpClientTesting } from '@angular/common/http/testing';
 import { BookComponent } from './book';
 import { provideRouter } from '@angular/router';
 import { ToastrModule } from 'ngx-toastr';
+import { ApiService } from '../api.service';
+
 
 
 describe('bookComponent', () => {
-  let component: BookComponent;
-  let fixture: ComponentFixture<BookComponent>;
+   let component: BookComponent;
+    let fixture: ComponentFixture<BookComponent>;
+
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
@@ -16,7 +19,8 @@ describe('bookComponent', () => {
       providers: [
         provideHttpClient(withFetch()),
         provideHttpClientTesting(),
-        provideRouter([])
+        provideRouter([]),
+        ApiService
       ]
     })
       .compileComponents();

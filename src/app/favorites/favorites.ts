@@ -1,7 +1,8 @@
-import { Component, OnInit, } from '@angular/core';
+import { Component, inject, OnInit, } from '@angular/core';
 import { ApiService } from '../api.service';
 import {CommonModule} from "@angular/common";
 import { RouterModule } from '@angular/router';
+import { IBook } from '../book/book';
 @Component({
   selector: 'app-favorites',
   templateUrl: './favorites.html',
@@ -12,15 +13,16 @@ import { RouterModule } from '@angular/router';
   ]
 })
 export class FavoritesComponent implements OnInit {
-  public books: Array<any> = new Array<any>();
+  public books: IBook[] = new Array<IBook>();
 
-  constructor(private apiService: ApiService) {
-  }
 
+  private apiService: ApiService = inject(ApiService);
+  
   public getFavBooks(){
     this.apiService.getFavorites().subscribe(data => {
       this.books = data;
     }, err => {
+      console.error(err);
       this.books = [];
     });
   }
