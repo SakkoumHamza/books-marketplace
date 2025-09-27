@@ -54,13 +54,19 @@ node('workers'){
         docker.build(imageName, '--build-arg ENVIRONMENT=development .')
     }
 
-    stage('Push'){
-        docker.withRegistry(registry, 'registry') {
-            docker.image(imageName).push(commitID())
+     stage('Push') {
+         withCredentials([usernamePassword(credentialsId: 'registry', usernameVariable: 'DOCKER_USER', passwordVariable: 'DOCKER_PASS')]) {
+            sh "echo $DOCKER_PASS | docker login -u $DOCKER_USER --password-stdin"
 
+            // Push with commit ID
+            sh "docker push ${imageName}:${commitID()}"
+
+            // Push 'develop' tag if on develop branch
             if (env.BRANCH_NAME == 'develop') {
-                docker.image(imageName).push('develop')
+                sh "docker push ${imageName}:develop"
             }
+
+            sh "docker logout"
         }
     }
 }
