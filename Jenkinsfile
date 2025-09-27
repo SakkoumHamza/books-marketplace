@@ -51,7 +51,7 @@ node('workers'){
     // }
 
     stage('Build'){
-        docker.build(imageName, '--build-arg ENVIRONMENT=sandbox .')
+        docker.build(imageName, '--build-arg ENVIRONMENT=development .')
     }
 
     stage('Push'){
