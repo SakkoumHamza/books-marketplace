@@ -25,7 +25,6 @@ node('workers'){
     }
 
     stage('SonarQube Analysis') {
-    steps {
         withSonarQubeEnv('sonarqube') {
             withSonarScanner('SonarQubeScanner') {
                 sh """
@@ -35,7 +34,6 @@ node('workers'){
                     -Dsonar.javascript.lcov.reportPaths=coverage/marketplace/lcov.info
                 """
             }
-        }
     }
 }
 
