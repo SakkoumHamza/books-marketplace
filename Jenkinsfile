@@ -18,13 +18,13 @@ node('workers'){
             allowMissing: false,
             alwaysLinkToLastBuild: false,
             keepAll: true,
-            reportDir: "$PWD/coverage/marketplace",
+            reportDir: "$PWD/coverage/books-market",
             reportFiles: "index.html",
             reportName: "Coverage Report"
         ])
     }
 
-    stage('Static Code Analysis'){
+    stage('SonarQube Analysis'){
         withSonarQubeEnv('sonarqube') {
             sh 'sonar-scanner'
         }
