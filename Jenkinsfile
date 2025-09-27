@@ -25,13 +25,19 @@ node('workers'){
     }
 
     stage('SonarQube Analysis') {
+        withCredentials([string(credentialsId: 'sonar-token', variable: 'SONAR_TOKEN')]) {
+
         withSonarQubeEnv('sonarqube') {
                 sh """
-                  sonar-scanner \
+                  /Users/mac/sonar-scanner/bin/sonar-scanner \
                     -Dsonar.projectKey=books-market \
+                    -Dsonar.projectName=books-market \
                     -Dsonar.sources=src \
-                    -Dsonar.javascript.lcov.reportPaths=coverage/marketplace/lcov.info
+                    -Dsonar.javascript.lcov.reportPaths=coverage/marketplace/lcov.info \
+                    -Dsonar.host.url=http://localhost:9000 \
+                    -Dsonar.login=$SONAR_TOKEN
                 """
+        }
     }
 }
 
