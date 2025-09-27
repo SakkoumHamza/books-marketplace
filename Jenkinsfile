@@ -24,11 +24,20 @@ node('workers'){
         ])
     }
 
-    stage('SonarQube Analysis'){
+    stage('SonarQube Analysis') {
+    steps {
         withSonarQubeEnv('sonarqube') {
-            sh 'sonar-scanner'
+            withSonarScanner('SonarQubeScanner') {
+                sh """
+                  sonar-scanner \
+                    -Dsonar.projectKey=books-market \
+                    -Dsonar.sources=src \
+                    -Dsonar.javascript.lcov.reportPaths=coverage/marketplace/lcov.info
+                """
+            }
         }
     }
+}
 
     stage("Quality Gate"){
         timeout(time: 5, unit: 'MINUTES') {
