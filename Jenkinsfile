@@ -51,7 +51,7 @@ node('workers'){
     // }
 
     stage('Build'){
-        docker.build("${imageName}:${commitId()}", '--build-arg ENVIRONMENT=development .')
+        docker.build("${imageName}:${commitID()}", '--build-arg ENVIRONMENT=development .')
     }
 
      stage('Push') {
