@@ -26,14 +26,12 @@ node('workers'){
 
     stage('SonarQube Analysis') {
         withSonarQubeEnv('sonarqube') {
-            withSonarScanner('SonarQubeScanner') {
                 sh """
                   sonar-scanner \
                     -Dsonar.projectKey=books-market \
                     -Dsonar.sources=src \
                     -Dsonar.javascript.lcov.reportPaths=coverage/marketplace/lcov.info
                 """
-            }
     }
 }
 
