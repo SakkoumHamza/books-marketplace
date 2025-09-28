@@ -10,7 +10,8 @@ import { IBook } from '../book/book';
   imports: [
     CommonModule,
     RouterModule
-  ]
+  ],
+  providers: [ApiService]
 })
 export class FavoritesComponent implements OnInit {
   public books: IBook[] = new Array<IBook>();

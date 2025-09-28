@@ -1,59 +1,113 @@
-# BooksMarket
+# 📚 Books market Microservice
+**Books Market** Frontend is a web application built with Angular 20.
+It provides a responsive and modern user interface for browsing and interacting with book data exposed by the backend microservice **"Books-store"**.
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 20.3.2.
+The project is tested using Jasmine/Karma and linted using Angular ESLint.
+It also includes a fully automated CI/CD pipeline using Jenkins and Docker ensuring continuous integration, automated testing, and containerized deployment for a reliable and maintainable frontend application.
 
-## Development server
+## 📂 Project Structure
 
-To start a local development server, run:
+```text
+BOOKS-MARKET/
+├── .angular/                # Angular CLI cache/config
+├── .scannerwork/            # SonarQube analysis files
+├── .vscode/                 # VSCode settings
+├── dist/                    # Production build output
+├── e2e/                     # End-to-end test configuration
+├── node_modules/            # Project dependencies
+├── public/                  # Public assets
+├── src/                     # Application source code
+│   ├── app/                 # Components, modules, services
+│   ├── assets/              # Images, logos, styles
+│   └── environments/        # Environment configs (dev/prod)
+├── .editorconfig            # Editor configuration
+├── .gitignore               # Git ignore rules
+├── angular.json             # Angular project configuration
+├── Dockerfile               # Dockerfile for production
+├── Dockerfile.test          # Dockerfile for testing
+├── eslint.config.js         # Angular ESLint configuration
+├── Jenkinsfile              # Jenkins pipeline configuration
+├── karma.conf.js            # Karma test runner configuration
+├── package.json             # Angular project dependencies
+├── package-lock.json        # Dependency lock file
+├── README.md                # Project documentation
+├── sonar-project.properties # SonarQube config
+├── tsconfig.app.json        # TypeScript config (app)
+├── tsconfig.json            # TypeScript base config
+├── tsconfig.spec.json       # TypeScript config (tests)
+└── tslint.json              # Legacy TSLint config
 
+```
+---
+## 🧑🏽‍💻 Pre-requisites
+- Node.js >= 20
+- Angular CLI >= 20
+- Docker & DockerHub account
+- Jenkins for CI/CD pipeline with Docker Hub credentials set
+---
+
+## CI/CD (Jenkins + DockerHub)
+1. Checkout – Pull the latest code from GitHub
+2. Install Dependencies – npm install
+3. Run Lint – Angular ESLint checks
+4. Run Tests – Jasmine/Karma unit tests with coverage reports
+5. Build Angular App 
+6. Build Docker Image 
+7. Push to Docker Hub – Tag & push the image
+---
+
+## 📸 Screenshots
+
+### 🔹 /dashboard UI
+![Mongodb](screenshots/dashboard.png)
+
+### 🔹 /book UI
+![Mongodb](screenshots/book.png)
+
+### 🔹 Jenkins 
+![Jenkins build](screenshots/jenkins.png)
+
+
+## Installation
+**Clone the repository:**
+```bash
+git clone https://github.com/sakkoumhamza/books-market-microservice.git
+cd books-market-microservice
+```
+**Install dependencies**
+```bash
+npm install
+```
+**Run the service**
 ```bash
 ng serve
 ```
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+---
+## 🐳 Docker Setup
 
-## Code scaffolding
-
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
-
-```bash
-ng generate component component-name
-```
-
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+**Build the image**
 
 ```bash
-ng generate --help
+docker build -t yourdockerhubusername/books-mmarket:latest .
 ```
 
-## Building
-
-To build the project run:
+ **Run the container**
 
 ```bash
-ng build
+docker run yourdockerhubusername/books-market:latest
 ```
 
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
+## 🫂 Contributing
+``` text
+1. Fork the repository
 
-## Running unit tests
+2. Create a feature branch (git checkout -b feature/new-feature)
 
-To execute unit tests with the [Karma](https://karma-runner.github.io) test runner, use the following command:
+3. Commit your changes (git commit -m 'Add new feature')
 
-```bash
-ng test
+4. Push to your branch (git push origin feature/new-feature)
+
+5. Open a Pull Request
 ```
-
-## Running end-to-end tests
-
-For end-to-end (e2e) testing, run:
-
-```bash
-ng e2e
-```
-
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
-
-## Additional Resources
-
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+ 

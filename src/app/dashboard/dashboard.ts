@@ -3,15 +3,15 @@ import { ApiService } from '../api.service';
 import { IBook } from '../book/book';
 import { RouterModule } from '@angular/router';
 import { FormsModule } from '@angular/forms';
-
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.html',
   styleUrls: ['./dashboard.css'],
   imports: [
     RouterModule,
-    FormsModule
-  ]
+    FormsModule,
+  ],
+  providers: [ApiService]
 })
 export class DashboardComponent implements OnInit {
   public books: IBook[] = [];

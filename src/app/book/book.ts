@@ -20,7 +20,8 @@ export interface IBook {
   styleUrls: ['./book.css'],
   imports: [
     RouterModule,
-  ]
+  ],
+  providers: [ApiService, ToastrService]
 })
 export class BookComponent implements OnInit {
   private apiService = inject(ApiService);
