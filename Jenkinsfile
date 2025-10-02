@@ -41,15 +41,6 @@ node('workers'){
     }
 }
 
-    // stage("Quality Gate"){
-    //     timeout(time: 5, unit: 'MINUTES') {
-    //         def qg = waitForQualityGate()
-    //         if (qg.status != 'OK') {
-    //             error "Pipeline aborted due to quality gate failure: ${qg.status}"
-    //         }
-    //     }
-    // }
-
     stage('Build'){
         docker.build("${imageName}:${commitID()}", '--build-arg ENVIRONMENT=development .')
     }
@@ -57,7 +48,6 @@ node('workers'){
      stage('Push') {
          withCredentials([usernamePassword(credentialsId: 'registry', usernameVariable: 'DOCKER_USER', passwordVariable: 'DOCKER_PASS')]) {
             sh "docker login -u $DOCKER_USER -p $DOCKER_PASS $registry"
-            docker.image("${imageName}:${commitID()}").push()
             if (env.BRANCH_NAME == 'develop') {
                 docker.image("${imageName}:${commitID()}").push('develop')
             }

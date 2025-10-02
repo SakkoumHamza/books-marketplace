@@ -1,0 +1,41 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: books-market
+  namespace: books-system
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: books-market
+  template:
+    metadata:
+      labels:
+        app: books-market
+    spec:
+      containers:
+      - name: books-market
+        image: sakkoumhamza/books-market:develop
+        imagePullPolicy: IfNotPresent
+        ports:
+        - containerPort: 3000
+        env:
+        - name: PARSER_URL
+          value: "http://books-parser:80"
+        - name: STORE_URL
+          value: "http://books-store:80"
+        - name: MONGO_URL
+          value: "mongodb://mongo:27017/books"
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: books-market
+  namespace: books-system
+spec:
+  selector:
+    app: books-market
+  ports:
+    - port: 80
+      targetPort: 3000
+  type: ClusterIP
